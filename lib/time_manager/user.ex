@@ -18,5 +18,6 @@ defmodule TimeManager.User do
     |> cast(attrs, [:username, :password, :phone, :email, :roles])
     |> validate_required([:username, :password, :phone, :email, :roles], message: "Can't be null")
     |> validate_format(:email, ~r/X@X.X/)
+    |> unique_constraint(:email)
   end
 end
