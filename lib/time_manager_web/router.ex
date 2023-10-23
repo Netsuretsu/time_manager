@@ -15,9 +15,37 @@ defmodule TimeManagerWeb.Router do
   end
 
   scope "/", TimeManagerWeb do
-    pipe_through :browser
+    pipe_through :api
 
-    get "/", PageController, :home
+    ################## Users Management ##############
+
+    get "/users", UsersController, :index
+    get "/users/:userID", UsersController, :show
+    put "/users/:userID", UsersController, :update
+    post "/users", UsersController, :store
+    delete "/users/:userID", UsersController, :delete
+
+    ################# Working Times Management #######
+
+    get "/workingtimes/:userID", WorkingTimesController, :index
+    get "/workingtimes/:userID/:id", WorkingTimesController, :show
+    post "/workingtimes/:userID", WorkingTimesController, :store
+    put "/workingtimes/:id", WorkingTimesController, :update
+    delete "/workingtimes/:id", WorkingTimesController, :delete
+
+    ################### Clocking Management ###############
+
+    get "/clocks/:userID", ClocksController, :index
+    post "/clocks/:userID", ClocksController, :store
+
+    ################### Teams Management #################
+
+    get "/teams", TeamsController, :index
+    get "/teams/:id", TeamsController, :show
+    get "/teams/:id/users", TeamsController, :showUsers
+    post "/teams", TeamsController, :store
+    delete "/teams/:id", TeamsController, :delete
+    put "/teams/:id", TeamsController, :update
   end
 
   # Other scopes may use custom stacks.
