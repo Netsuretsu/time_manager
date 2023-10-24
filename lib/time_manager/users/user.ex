@@ -8,6 +8,9 @@ defmodule TimeManager.Users.User do
     field :role, Ecto.Enum, values: [:employee, :manager, :general_manager]
     field :phone, :string
     field :email, :string
+    has_one :clocks, TimeManager.Clocks.Clock
+    has_one :working_times, TimeManager.Working_times.Working_time
+    has_many :teams, TimeManager.Teams.Team
 
     timestamps(type: :utc_datetime)
   end
