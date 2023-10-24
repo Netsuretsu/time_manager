@@ -19,6 +19,9 @@ defmodule TimeManagerWeb.Router do
 
     get "/", PageController, :home
     resources "/users", UserController, except: [:new, :edit]
+    resources "/clocks", ClockController, except: [:new, :edit]
+    resources "/working_times", Working_timeController, except: [:new, :edit]
+    resources "/teams", TeamController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
